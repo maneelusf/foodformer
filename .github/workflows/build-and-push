@@ -1,0 +1,14 @@
+name: Build-and-Push-to-ECR
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Configure AWS Credentials
+      - uses: maneelusf/gh-ecr-login@v1
+      with: 
+       access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+       secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+       region: us-west-2
