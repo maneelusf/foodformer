@@ -21,7 +21,5 @@ jobs:
           WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
         run: |
           echo "WANDB_API_KEY: $WANDB_API_KEY"
-          pip install wandb
-          python ./serving/download_model.py
 
       # Add more steps as needed for your workflow below this point
