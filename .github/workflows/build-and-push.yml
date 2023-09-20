@@ -11,7 +11,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
-      - name: Another Step
-        run: |
-          # This is an example of a step with a run command
-          echo "This is another step"
+      - name: Install W&B
+        env:
+          WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
+        run: python ./serving/download_model.py
