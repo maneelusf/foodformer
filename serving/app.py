@@ -11,6 +11,7 @@ from pydantic import BaseModel
 from torch.nn.functional import softmax
 from transformers import ViTImageProcessor
 import os
+logger.info("Running")
 
 
 class ClassPredictions(BaseModel):
