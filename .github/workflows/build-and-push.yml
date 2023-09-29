@@ -4,7 +4,7 @@ env:
   AWS_REGION: us-west-2                   # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: foodformer           # set this to your Amazon ECR repository name
   ECS_SERVICE: foodformer                 # set this to your Amazon ECS service name
-  ECS_CLUSTER: foodformer-ecs-cluster                 # set this to your Amazon ECS cluster name
+  ECS_CLUSTER: foodformer-cluster                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: foodformer-ecs-task-definition:7 # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: foodformer-container
