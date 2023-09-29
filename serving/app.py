@@ -1,7 +1,7 @@
 from functools import partial
 from io import BytesIO
 from pathlib import Path
-
+import wandb
 import torch
 import uvicorn
 from fastapi import FastAPI, File, UploadFile
@@ -17,7 +17,6 @@ class ClassPredictions(BaseModel):
 
 
 app = FastAPI()
-
 model_name_or_path = "google/vit-base-patch16-224-in21k"
 feature_extractor = ViTImageProcessor.from_pretrained(model_name_or_path)
 preprocessor = partial(feature_extractor, return_tensors="pt")
@@ -36,11 +35,16 @@ def read_imagefile(file: bytes) -> Image.Image:
 # MODEL_PATH = package_path / "models/model.ckpt"
 
 package_path = Path(__file__).parent
+path = "./artifacts/vit:v0"
 
-MODEL_PATH = package_path / "model.ckpt"
+MODEL_PATH = "{}/model.ckpt".format(path)
 
 
-def load_model(model_path: str | Path = MODEL_PATH) -> torch.nn.Module:
+def load_model(model_path=None):
+    if model_path is None:
+        model_path = MODEL_PATH  # Set your default path here
+
+    model_path = str(model_path)  # Ensure the path is a string
     checkpoint = torch.load(model_path, map_location=torch.device("cpu"))
     model = checkpoint["hyper_parameters"]["model"]
     labels = checkpoint["hyper_parameters"]["label_names"]

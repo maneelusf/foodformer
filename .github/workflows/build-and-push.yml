@@ -28,7 +28,7 @@ jobs:
         env:
           WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
         run: |
-          echo "WANDB_API_KEY: $WANDB_API_KEY"
+          python ./serving/download_model.py
       - name: Checkout
         uses: actions/checkout@v4
       - name: Configure AWS credentials
