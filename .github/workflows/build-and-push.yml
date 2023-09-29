@@ -7,7 +7,7 @@ env:
   ECS_CLUSTER: foodformer-ecs-cluster                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: foodformer-ecs-task-definition:2 # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: foodformer
+  CONTAINER_NAME: foodformer-container
 
 jobs:
   Explore-GitHub-Actions:
