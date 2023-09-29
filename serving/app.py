@@ -37,7 +37,7 @@ def read_imagefile(file: bytes) -> Image.Image:
 # MODEL_PATH = package_path / "models/model.ckpt"
 
 package_path = Path(__file__).parent
-path = "artifacts/vit:v0"
+path = "./artifacts/vit:v0"
 
 MODEL_PATH = "{}/model.ckpt".format(path)
 
