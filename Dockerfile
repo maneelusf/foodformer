@@ -6,6 +6,6 @@ RUN pip install -r requirements.txt
 
 COPY ./serving ./serving
 
- COPY ./artifacts ./artifacts
+COPY ./artifacts ./artifacts
 
 CMD ["uvicorn", "serving.app:app", "--host", "0.0.0.0", "--port", "80"]
