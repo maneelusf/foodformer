@@ -6,6 +6,8 @@ RUN pip install -r requirements.txt
 
 COPY ./serving ./serving
 
+COPY ./artifacts ./artifacts
+
 FROM busybox
 
 RUN mkdir /tmp/build/
@@ -16,3 +18,4 @@ COPY . /tmp/build
 RUN find /tmp/build/
 
 CMD ["uvicorn", "serving.app:app", "--host", "0.0.0.0", "--port", "80"]
+
