@@ -5,9 +5,6 @@ COPY ./requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
 # Stage 2: Copy your application code
-FROM builder as app
-
-WORKDIR /app
 COPY ./serving ./serving
 COPY ./artifacts ./artifacts
 
