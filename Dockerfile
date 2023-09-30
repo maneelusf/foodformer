@@ -4,6 +4,8 @@ COPY ./requirements.txt ./requirements.txt
 
 RUN pip install -r requirements.txt
 
+RUN pwd && ls
+
 COPY ./serving ./serving
 
 COPY ./artifacts ./artifacts
