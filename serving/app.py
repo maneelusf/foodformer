@@ -23,8 +23,8 @@ app = FastAPI()
 model_name_or_path = "google/vit-base-patch16-224-in21k"
 feature_extractor = ViTImageProcessor.from_pretrained(model_name_or_path)
 preprocessor = partial(feature_extractor, return_tensors="pt")
-wandb.init()
-path = wandb.use_artifact("maneel/Foodformer/vit:v0").download()
+# wandb.init()
+# path = wandb.use_artifact("maneel/Foodformer/vit:v0").download()
 
 
 def preprocess_image(image: Image.Image) -> torch.tensor:
