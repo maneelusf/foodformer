@@ -8,7 +8,7 @@ RUN pip install -r requirements.txt
 COPY ./serving ./serving
 
 # FROM busybox
-RUN ls -la
+RUN ls -la serving
 # RUN mkdir /tmp/build/
 # # Add context to /tmp/build/
 # COPY . /tmp/build/
