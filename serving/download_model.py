@@ -12,5 +12,5 @@ wandb.init()
 
 current_folder = Path(__file__).parent
 print(f"Folder: {current_folder}")
-path = wandb.use_artifact("maneel/Foodformer/vit:v0").get_path("model.ckpt").download()
+path = wandb.use_artifact("maneel/Foodformer/vit:v0").download(root = current_folder)
 print(f"Model downloaded to: {path}")
