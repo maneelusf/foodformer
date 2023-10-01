@@ -2,7 +2,6 @@ import os
 import random
 
 from locust import HttpUser, between, events, task
-from locust.env import Environment
 
 IMAGES_FOLDER = "/dataset"
 filenames = os.listdir(IMAGES_FOLDER)
@@ -10,7 +9,7 @@ print(filenames)
 
 
 @events.init.add_listener
-def on_locust_init(environment: Environment) -> None:
+def on_locust_init(environment):
     environment.filenames = os.listdir(IMAGES_FOLDER)
 
 
