@@ -15,7 +15,9 @@ repos:
     hooks:
       - id: mypy
         additional_dependencies: [types-PyYAML==6.0.12.9]
-        exclude: model.py
+        exclude: 
+         model.py
+         locustfile.py
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
     hooks:

@@ -1,13 +1,12 @@
 import os
 import random
-from typing import Optional
 
-from locust import HttpUser, Response, between, events, task
+from locust import HttpUser, between, events, task
 from locust.env import Environment
 
 IMAGES_FOLDER = "/dataset"
-
-# ...
+filenames = os.listdir(IMAGES_FOLDER)
+print(filenames)
 
 
 @events.init.add_listener
@@ -16,22 +15,21 @@ def on_locust_init(environment: Environment) -> None:
 
 
 class QuickstartUser(HttpUser):
-    host: str = "http://44.234.254.158"
+    host = "http://44.234.254.158"
     wait_time = between(1, 5)
 
     @task
     def call_root_endpoint(self) -> None:
         self.client.get("/")
 
-    @task(3)
-    def call_predict(self) -> Optional[Response]:
+    @task(3)  # 3 is the random task pick probability weight
+    def call_predict(self) -> None:
         filename = self.get_random_image_filename()
         image_path = f"{IMAGES_FOLDER}/{filename}"
         print(image_path)
-        response = self.client.post("/predict", files={"file": open(image_path, "rb")})
-        print("Response status code:", response.status_code)
-        print("Response text:", response.text)
-        return response
+        # Send a request to the /predict endpoint using self.client
+        # Replace '/predict' with the actual endpoint you want to test
+        self.client.post("/predict", files={"file": open(image_path, "rb")})
 
     def get_random_image_filename(self) -> str:
         return random.choice(self.environment.filenames)
