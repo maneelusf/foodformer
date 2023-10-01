@@ -19,11 +19,11 @@ class QuickstartUser(HttpUser):
     wait_time = between(1, 5)
 
     @task
-    def call_root_endpoint(self) -> None:
+    def call_root_endpoint(self):
         self.client.get("/")
 
     @task(3)  # 3 is the random task pick probability weight
-    def call_predict(self) -> None:
+    def call_predict(self):
         filename = self.get_random_image_filename()
         image_path = f"{IMAGES_FOLDER}/{filename}"
         print(image_path)
@@ -31,5 +31,5 @@ class QuickstartUser(HttpUser):
         # Replace '/predict' with the actual endpoint you want to test
         self.client.post("/predict", files={"file": open(image_path, "rb")})
 
-    def get_random_image_filename(self) -> str:
+    def get_random_image_filename(self):
         return random.choice(self.environment.filenames)

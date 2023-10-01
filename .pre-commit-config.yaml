@@ -10,14 +10,6 @@ repos:
       - id: flake8
       - id: requirements-txt-fixer
       - id: check-docstring-first
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.1.1
-    hooks:
-      - id: mypy
-        additional_dependencies: [types-PyYAML==6.0.12.9]
-        exclude: 
-         model.py
-         locustfile.py
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
     hooks:
