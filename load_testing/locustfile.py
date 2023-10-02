@@ -9,7 +9,7 @@ print(filenames)
 
 
 @events.init.add_listener
-def on_locust_init(environment):
+def on_locust_init(environment, **kwargs):
     environment.filenames = os.listdir(IMAGES_FOLDER)
 
 
@@ -28,7 +28,10 @@ class QuickstartUser(HttpUser):
         print(image_path)
         # Send a request to the /predict endpoint using self.client
         # Replace '/predict' with the actual endpoint you want to test
-        self.client.post("/predict", files={"file": open(image_path, "rb")})
+        response = self.client.post("/predict", files={"file": open(image_path, "rb")})
+        print("Response status code:", response.status_code)
+        print("Response text:", response.text)
+        return response
 
     def get_random_image_filename(self):
         return random.choice(self.environment.filenames)
