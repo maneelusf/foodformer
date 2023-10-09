@@ -48,9 +48,6 @@ def load_model(model_path=None):
 
     model_path = str(model_path)  # Ensure the path is a string
     checkpoint = torch.load(model_path, map_location=torch.device("cpu"))
-    import pdb
-
-    pdb.set_trace()
     model = checkpoint["hyper_parameters"]["model"]
     labels = checkpoint["hyper_parameters"]["label_names"]
     model.eval()  # To set up inference (disable dropout, layernorm, etc.)
