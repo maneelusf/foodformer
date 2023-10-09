@@ -3,6 +3,16 @@
 [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-31011/)
 [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nico-usf/foodformer)
 
+## Training
+
+For model training, we harnessed the power of [PyTorch Lightning](https://pytorch-lightning.readthedocs.io/) to fine-tune our model using the [Foodset 101 dataset](https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/), which is available through [TorchVision](https://pytorch.org/vision/stable/datasets.html#food101).
+
+Our model is built upon the [VisionTransformer](https://huggingface.co/google/vit-base-patch16-224-in21k) architecture, known for its excellent performance in multi label image recognition tasks.
+
+We conducted training over a span of 10 epochs, optimizing the model to achieve results through distributed data parallelism. To explore the training progress, metrics, and insights, please visit the [W&B dashboard](https://wandb.ai/maneel/Foodformer?workspace=user-maneel1995).
+
+
+
 ## Development
 
 To setup this repo locally, create a virtual environment (e.g. with [PyEnv](https://github.com/pyenv/pyenv)):
@@ -32,26 +42,32 @@ You can use API platforms like Postman or Insomnia, the command-line tool `curl`
 
 ```bash
 curl -X 'POST' \
-  'http://0.0.0.0:8080/predict' \
+  'http://35.88.15.190//predict' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
   -F 'file=@image.jpg;type=image/jpeg'
 ```
 
-## Deployment to AWS Fargate
+## Load testing Reports
 
-Fargate is a serverless deployment solution for Docker containers.
+For load testing via locust, follow the instructions.
 
-### Build and push the Docker image
+```bash
+cd load_testing
+docker build --no-cache -t my-image:latest .
+docker run -p 8890:8089 my-image:latest
+```
+Set the load testing parameters and take required screenshots.
 
-In a terminal:
+## Grafana Dashboard
 
-- Build the dockerfile: `docker build -t foodformer .`
-- Fetch and store your AWS account id and AWS region: `export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text) && export AWS_REGION='us-east-2'`
-- Authenticate with AWS ECR: `aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com` -> You should see the following message: "Login Succeeded"
-- Create a repo in ECR: `aws ecr create-repository --repository-name foodformer --image-scanning-configuration scanOnPush=true --region $AWS_REGION`
-- Tag and push you Docker image: `docker tag foodformer:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/foodformer` followed by `docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/foodformer` (this command will take a while, it's uploading the entire Docker image to ECR).
+You can access the Grafana dashboard snapshot [here](https://snapshots.raintank.io/dashboard/snapshot/1B5qlz5FpbgD33tRzoXsKuBe68wuEQu7).
 
-### Deployed API container with Fargate
+Explore valuable metrics and insights from our project on the dashboard.
 
-Follow [this guide](https://app.tango.us/app/workflow/Creating-and-Deploying-an-ECS-Cluster-for-Foodformer-Application-7ede665f523044ec93f0239ad24f41a5).
+
+
+
+
+
+
