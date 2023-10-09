@@ -1,3 +1,4 @@
+-f https://download.pytorch.org/whl/cpu
 datasets==2.14.4
 fastapi==0.103.0
 gradio==3.42.0
@@ -13,3 +14,4 @@ torchmetrics==1.1.1
 transformers==4.32.1
 uvicorn==0.23.2
 wandb
+
