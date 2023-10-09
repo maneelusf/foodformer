@@ -14,7 +14,7 @@ def on_locust_init(environment, **kwargs):
 
 
 class QuickstartUser(HttpUser):
-    host = "http://35.88.15.190/"
+    host = "http://35.88.15.190"
     wait_time = between(1, 5)
 
     @task

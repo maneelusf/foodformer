@@ -8,6 +8,7 @@ pre-commit==3.3.3
 pydantic==2.3.0
 python-multipart==0.0.6
 pytorch-lightning==2.0.8
+torch==2.0.1+cpu
 torchmetrics==1.1.1
 transformers==4.32.1
 uvicorn==0.23.2

@@ -57,11 +57,18 @@ cd load_testing
 docker build --no-cache -t my-image:latest .
 docker run -p 8890:8089 my-image:latest
 ```
-Set the load testing parameters and take required screenshots.
+Set the load testing parameters and take required screenshots. Screenshots from my test runs are as follows:-
+
+![Image Alt Text](/load_testing/results/testreport.png)
+
+Other screenshots can be found here 
+1. [Image 1](/load_testing/results/testreport1.png)
+2. [Image 2](/load_testing/results/testreport2.png)
+3. [Image 3](/load_testing/results/testreport3.png)
 
 ## Grafana Dashboard
 
-You can access the Grafana dashboard snapshot [here](https://snapshots.raintank.io/dashboard/snapshot/1B5qlz5FpbgD33tRzoXsKuBe68wuEQu7).
+You can access the Grafana dashboard snapshot [here](https://snapshots.raintank.io/dashboard/snapshot/tfiUtgCyEUWr0yKDdKAdbsvU56tvglu6).
 
 Explore valuable metrics and insights from our project on the dashboard.
 
