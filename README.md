@@ -33,6 +33,9 @@ pip install -r requirements.txt
 pre-commit install
 ```
 
+## Demo
+You can access the demo of the application at [here](https://huggingface.co/spaces/maneel/foodformer)
+
 ## Testing the API
 
 You can use API platforms like Postman or Insomnia, the command-line tool `curl`.
